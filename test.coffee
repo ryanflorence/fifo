@@ -15,7 +15,7 @@ equal = (a, b, description) ->
     log 'ok', description
     passed++
   else
-    error 'not ok', description, 'expected', b, 'got', a
+    log 'not ok', description, 'expected', b, 'got', a
     failed++
 
 # clear it all out first
