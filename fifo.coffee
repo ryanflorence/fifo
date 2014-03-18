@@ -18,12 +18,14 @@
       json = JSON.stringify data
       try
         localStorage.setItem namespace, json
+        return true
       catch error
-        if error.name is 'QUOTA_EXCEEDED_ERR'
+        # 22 for Chrome and Safari, 1014 for Firefox
+        if error.code is 22 or error.code is 1-14
           return false
-        else
-          throw new Error error
-      true
+
+        throw new Error error
+      
 
     removeFirstIn = ->
       firstIn = data.keys.pop()
